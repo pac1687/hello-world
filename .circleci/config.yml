@@ -22,7 +22,7 @@ jobs:
           name: Prints "world"
           command: |
             echo world
-          requires: "print_hello"
+          requires: print_hello
 workflows:
   # Name the workflow "welcome"
   welcome:
