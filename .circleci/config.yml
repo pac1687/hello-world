@@ -11,14 +11,14 @@ jobs:
       - image: circleci/node:13.8.0
     steps:
       name: Prints "hello"
-      commands: |
+      command: |
         echo hello
   print_world:
     docker:
       - image: circleci/node:13.8.0
     steps:
       name: Prints "world"
-      commands: |
+      command: |
         echo world
       requires: "print_hello"
 workflows:
