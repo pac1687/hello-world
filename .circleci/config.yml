@@ -1,5 +1,13 @@
 # Use the latest 2.1 version of CircleCI pipeline process engine. See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
+defaults: &defaults
+  docker:
+      - image: circleci/node:13.8.0
+command:
+  print_pipeline_id:
+    description: "Prints the Circle CI Workflow ID"
+    steps:
+      - run: echo $CIRCLE_WORKFLOW_ID
 # Use a package of configuration called an orb.
 orbs:
   # Declare a dependency on the welcome-orb
@@ -47,14 +55,20 @@ jobs:
       - run:
           name: Prints content of output.txt from workspace
           command: cat ~/output.txt
+  print_pipeline_id:
+    <<: *defaults
+    steps:
+      - print_pipeline_id
+    
 workflows:
   # Name the workflow "welcome"
   welcome:
     # Run the welcome/run job in its own container
     jobs:
-      - save_hello_world_output
-      - print_output_file:
-          requires:
-            - save_hello_world_output
+      # - save_hello_world_output
+      # - print_output_file:
+      #     requires:
+      #       - save_hello_world_output
+      - print_pipeline_id
 
 
