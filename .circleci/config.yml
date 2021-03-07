@@ -59,6 +59,13 @@ jobs:
     <<: *defaults
     steps:
       - print_pipeline_id
+  test_on_fail:
+    <<: *defaults
+    steps:
+      - run: return 1
+      - run:
+          command: echo "A step failed!"
+          when: on_fail
     
 workflows:
   # Name the workflow "welcome"
