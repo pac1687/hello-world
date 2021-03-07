@@ -26,9 +26,9 @@ jobs:
     environment:
       MY_NAME: << pipeline.my_name >>
     steps:
-      -run:
-        name: Prints my_name environment variable
-        command: echo 
+      - run:
+          name: Prints my_name environment variable
+          command: echo $MY_NAME
 workflows:
   # Name the workflow "welcome"
   welcome:
