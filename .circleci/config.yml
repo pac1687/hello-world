@@ -35,7 +35,7 @@ jobs:
           name: Output 'hello world' to a file called output.txt
           command: echo "hello world" > output.txt
       - persist_to_workspace:
-          root: /tmp/dir
+          root: ~/
           paths:
             - output.txt
   print_output_file:
@@ -43,7 +43,7 @@ jobs:
       - image: circleci/node:13.8.0
     steps:
       - attach_workspace:
-          at: /tmp/dir
+          at: ~/
       - run:
           name: Prints content of output.txt from workspace
           command: cat output.txt
