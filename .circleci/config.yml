@@ -27,15 +27,34 @@ jobs:
       - run:
           name: Prints my_name environment variable
           command: echo $MY_NAME
+  save_hello_world_output:
+    docker:
+      - image: circleci/node:13.8.0
+    persist_to_workspace:
+      root: /tmp/dir
+      paths:
+        - output.txt
+    steps:
+      - run:
+          name: Output 'hello world' to a file called output.txt
+          command: echo "hello world" > output.txt
+  print_output_file:
+    docker:
+      - image: circleci/node:13.8.0
+    attach_workspace:
+      at: /tmp/dir
+    steps:
+      - run:
+          name: Prints content of output.txt from workspace
+          command: cat output.txt
 workflows:
   # Name the workflow "welcome"
   welcome:
     # Run the welcome/run job in its own container
     jobs:
-      - welcome/run
-      - print_name
-      - print_hello
-      - print_world:
+      - save_hello_world_output
+      - print_output_file:
           requires:
-            - print_hello
+            - save_hello_world_output
+
 
