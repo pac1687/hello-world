@@ -16,7 +16,8 @@ jobs:
   print_world:
     docker:
       - image: circleci/node:13.8.0
-    environment: MY_NAME: << pipeline.my_name >>
+    environment:
+      MY_NAME: << pipeline.my_name >>
     steps:
       - run:
           name: Prints "world"
