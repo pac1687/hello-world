@@ -3,7 +3,7 @@ version: 2.1
 defaults: &defaults
   docker:
       - image: circleci/node:13.8.0
-command:
+commands:
   print_pipeline_id:
     description: "Prints the Circle CI Workflow ID"
     steps:
