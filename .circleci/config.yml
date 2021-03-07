@@ -46,7 +46,7 @@ jobs:
           at: ~/
       - run:
           name: Prints content of output.txt from workspace
-          command: cat output.txt
+          command: cat ~/output.txt
 workflows:
   # Name the workflow "welcome"
   welcome:
